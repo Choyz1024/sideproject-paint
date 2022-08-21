@@ -1,12 +1,7 @@
-const saveBtn = document.querySelector('#saveBtn')
-
 let colorButton
 let strokeSlider
+let saveBtn
 let cnv
-
-saveBtn.addEventListener('click', () => {
-  save(cnv, 'myCanvas.jpg')
-})
 
 function setup () {
   const sketchWidth = document.querySelector('#square').offsetWidth
@@ -17,17 +12,24 @@ function setup () {
 
   colorButton = createColorPicker('#000000')
   colorButton.parent('square')
-  colorButton.position(sketchWidth + 10, 0, 'relative')
+  colorButton.position(sketchWidth - 50, 0, 'relative')
 
   strokeSlider = createSlider(1, 50, 1)
   strokeSlider.parent('square')
-  strokeSlider.position(sketchWidth - 40, 40, 'relative')
+  strokeSlider.position(sketchWidth - 100, 40, 'relative')
 
   let resetButton
   resetButton = createButton('reset')
   resetButton.parent('square')
-  resetButton.position(sketchWidth - 170, sketchHeight - 30, 'relative')
+  resetButton.position(sketchWidth - 235, sketchHeight - 30, 'relative')
   resetButton.mouseClicked(resetCanvas)
+
+  saveBtn = createButton('Save')
+  saveBtn.parent('square')
+  saveBtn.position(sketchWidth - 280, sketchHeight - 65, 'relative')
+  saveBtn.mouseClicked(function () {
+    save(cnv, 'myCanvas.jpg')
+  })
 }
 
 function draw () {

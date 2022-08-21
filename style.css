@@ -35,10 +35,3 @@ canvas {
   height: 700px;
   margin: auto;
 }
-#saveBtn {
-  position: fixed;
-  left: .5%;
-  bottom: 26%;
-
-
-}
