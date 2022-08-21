@@ -2,18 +2,24 @@ let colorButton
 let strokeSlider
 
 function setup () {
-  createCanvas(700, 700)
+  const sketchWidth = document.querySelector('#square').offsetWidth
+  const sketchHeight = document.querySelector('#square').offsetHeight
+  const renderer = createCanvas(sketchWidth, sketchHeight)
+  renderer.parent('square')
   background('white')
 
   colorButton = createColorPicker('#000000')
-  colorButton.position(10, 710)
+  colorButton.parent('square')
+  colorButton.position(sketchWidth + 10, 0, 'relative')
 
   strokeSlider = createSlider(1, 50, 1)
-  strokeSlider.position(10, 680)
+  strokeSlider.parent('square')
+  strokeSlider.position(sketchWidth - 40, 40, 'relative')
 
   let resetButton
   resetButton = createButton('reset')
-  resetButton.position(10, 650)
+  resetButton.parent('square')
+  resetButton.position(sketchWidth - 170, sketchHeight - 30, 'relative')
   resetButton.mouseClicked(resetCanvas)
 }
 
@@ -23,10 +29,6 @@ function draw () {
     stroke(colorButton.color())
     line(mouseX, mouseY, pmouseX, pmouseY)
   }
-}
-
-function changePenStroke () {
-  penStroke = Math.floor(Math.random() * 20) + 1
 }
 
 function resetCanvas () {

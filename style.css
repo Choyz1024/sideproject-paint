@@ -10,7 +10,6 @@ body {
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  background: black;
 }
 
 canvas {
@@ -19,4 +18,19 @@ canvas {
   left: 50%;
   -webkit-transform: translate(-50%, -50%);
           transform: translate(-50%, -50%);
+}
+
+#square-container {
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+  margin: 0;
+  background: linear-gradient(115deg,gray,black);
+}
+
+#square {
+  box-sizing: border-box;
+  width: 700px;
+  height: 700px;
+  margin: auto;
 }
