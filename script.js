@@ -3,11 +3,19 @@ let strokeSlider
 let saveBtn
 let cnv
 let eraser = false
+let img
+let pg
+
+const sketchWidth = document.querySelector('#square').offsetWidth
+const sketchHeight = document.querySelector('#square').offsetHeight
+
+function preload() {
+  img = loadImage('assets/default.jpg');
+}
 
 function setup () {
-  const sketchWidth = document.querySelector('#square').offsetWidth
-  const sketchHeight = document.querySelector('#square').offsetHeight
   cnv = createCanvas(sketchWidth, sketchHeight)
+  pg = createGraphics(sketchWidth, sketchHeight);
   cnv.parent('square')
   background('white')
 
@@ -40,38 +48,25 @@ function setup () {
 }
 
 function draw () {
+  image(img, 0, 0, sketchWidth, sketchHeight);
+  image(pg, 0, 0);
+  image(pg, 0, sketchHeight);
   if (mouseIsPressed) {
-    strokeWeight(strokeSlider.value())
-    stroke(colorButton.color())
-    if (!eraser) line(mouseX, mouseY, pmouseX, pmouseY)
+    pg.strokeWeight(strokeSlider.value())
+    pg.stroke(colorButton.color())
+    if (!eraser) {
+       pg.line(mouseX, mouseY, pmouseX, pmouseY)
+    }
     else {
       fill(255)
       noStroke()
-      ellipse(mouseX, mouseY, strokeSlider.value(), strokeSlider.value())
+      pg.ellipse(mouseX, mouseY, strokeSlider.value(), strokeSlider.value())
     }
   }
 }
 
 function resetCanvas () {
   clear()
+  pg.clear()
   background('white')
 }
-
-// let photo
-
-// // function preload() {
-// //   photo = loadImage('assets/rockies.jpg');
-// // }
-
-// // function draw() {
-// //   image(photo, 0, 0);
-// // }
-
-// // function keyTyped() {
-// //   if (key === 's') {
-// //     photo.save('photo', 'png');
-// //   }
-// // }
-
-// cnv = createCanvas(300, 300);
-// save(cnv, 'myCanvas.jpg');
