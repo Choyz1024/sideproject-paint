@@ -1,20 +1,35 @@
 let colorButton
 let strokeSlider
+let saveBtn
+let cnv
 
 function setup () {
-  createCanvas(700, 700)
+  const sketchWidth = document.querySelector('#square').offsetWidth
+  const sketchHeight = document.querySelector('#square').offsetHeight
+  cnv = createCanvas(sketchWidth, sketchHeight)
+  cnv.parent('square')
   background('white')
 
   colorButton = createColorPicker('#000000')
-  colorButton.position(10, 710)
+  colorButton.parent('square')
+  colorButton.position(sketchWidth - 50, 0, 'relative')
 
   strokeSlider = createSlider(1, 50, 1)
-  strokeSlider.position(10, 680)
+  strokeSlider.parent('square')
+  strokeSlider.position(sketchWidth - 100, 40, 'relative')
 
   let resetButton
   resetButton = createButton('reset')
-  resetButton.position(10, 650)
+  resetButton.parent('square')
+  resetButton.position(sketchWidth - 235, sketchHeight - 30, 'relative')
   resetButton.mouseClicked(resetCanvas)
+
+  saveBtn = createButton('Save')
+  saveBtn.parent('square')
+  saveBtn.position(sketchWidth - 280, sketchHeight - 65, 'relative')
+  saveBtn.mouseClicked(function () {
+    save(cnv, 'myCanvas.jpg')
+  })
 }
 
 function draw () {
@@ -25,11 +40,26 @@ function draw () {
   }
 }
 
-function changePenStroke () {
-  penStroke = Math.floor(Math.random() * 20) + 1
-}
-
 function resetCanvas () {
   clear()
   background('white')
 }
+
+// let photo
+
+// // function preload() {
+// //   photo = loadImage('assets/rockies.jpg');
+// // }
+
+// // function draw() {
+// //   image(photo, 0, 0);
+// // }
+
+// // function keyTyped() {
+// //   if (key === 's') {
+// //     photo.save('photo', 'png');
+// //   }
+// // }
+
+// cnv = createCanvas(300, 300);
+// save(cnv, 'myCanvas.jpg');
