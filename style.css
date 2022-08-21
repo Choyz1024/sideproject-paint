@@ -20,3 +20,10 @@ canvas {
   -webkit-transform: translate(-50%, -50%);
           transform: translate(-50%, -50%);
 }
+
+#saveBtn {
+  position: fixed;
+  left: .5%;
+  bottom: 26%;
+
+}
