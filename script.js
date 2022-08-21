@@ -47,7 +47,7 @@ function draw () {
     else {
       fill(255)
       noStroke()
-      ellipse(mouseX, mouseY, 20, 20)
+      ellipse(mouseX, mouseY, strokeSlider.value(), strokeSlider.value())
     }
   }
 }
