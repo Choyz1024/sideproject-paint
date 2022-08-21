@@ -2,6 +2,7 @@ let colorButton
 let strokeSlider
 let saveBtn
 let cnv
+let eraser = false
 
 function setup () {
   const sketchWidth = document.querySelector('#square').offsetWidth
@@ -17,6 +18,12 @@ function setup () {
   strokeSlider = createSlider(1, 50, 1)
   strokeSlider.parent('square')
   strokeSlider.position(sketchWidth - 100, 40, 'relative')
+
+  let eraseButton
+  eraseButton = createButton('eraser')
+  eraseButton.parent('square')
+  eraseButton.position(sketchWidth - 230, 80, 'relative')
+  eraseButton.mouseClicked(switchEaser = () => {eraser = !eraser})
 
   let resetButton
   resetButton = createButton('reset')
@@ -36,7 +43,12 @@ function draw () {
   if (mouseIsPressed) {
     strokeWeight(strokeSlider.value())
     stroke(colorButton.color())
-    line(mouseX, mouseY, pmouseX, pmouseY)
+    if (!eraser) line(mouseX, mouseY, pmouseX, pmouseY)
+    else {
+      fill(255)
+      noStroke()
+      ellipse(mouseX, mouseY, 20, 20)
+    }
   }
 }
 
