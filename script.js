@@ -1,26 +1,46 @@
-let pen_color = [100, 50 ,0]
+let penStroke = 6
+let penColor = [100, 50 ,0]
 
 function setup() {
   createCanvas(700, 700)
-  background(200)
+  background('white')
 
-  let color_button
-  color_button = createButton('Change Color')
-  color_button.position(10, 710)
-  color_button.mouseClicked(change_pen_color)
+  let colorButton
+  colorButton = createButton('Change Color')
+  colorButton.position(10, 710)
+  colorButton.mouseClicked(changePenColor)
+
+  let strokeButton
+  strokeButton = createButton('Change Stroke')
+  strokeButton.position(10, 680)
+  strokeButton.mouseClicked(changePenStroke)
+
+  let resetButton
+  resetButton = createButton('reset')
+  resetButton.position(10, 650)
+  resetButton.mouseClicked(resetCanvas)
 }
 
 function draw() {
   if (mouseIsPressed) {
-    strokeWeight(6)
+    strokeWeight(penStroke)
     stroke(pen_color)
     line(mouseX, mouseY, pmouseX, pmouseY)
   }
 }
 
-function change_pen_color() {
+function changePenColor() {
   r = random(255)
   g = random(255)
   b = random(255)
-  pen_color =[r, g, b]
-} 
+  penColor = [r, g, b]
+}
+
+function changePenStroke() {
+  penStroke = Math.floor(Math.random() * 20) + 1
+}
+
+function resetCanvas() {
+  clear()
+  background('white')
+}
