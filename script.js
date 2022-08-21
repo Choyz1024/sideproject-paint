@@ -1,19 +1,15 @@
-let penStroke = 6
-let penColor = [100, 50 ,0]
+let colorButton
+let strokeSlider
 
-function setup() {
+function setup () {
   createCanvas(700, 700)
   background('white')
 
-  let colorButton
-  colorButton = createButton('Change Color')
+  colorButton = createColorPicker('#000000')
   colorButton.position(10, 710)
-  colorButton.mouseClicked(changePenColor)
 
-  let strokeButton
-  strokeButton = createButton('Change Stroke')
-  strokeButton.position(10, 680)
-  strokeButton.mouseClicked(changePenStroke)
+  strokeSlider = createSlider(1, 50, 1)
+  strokeSlider.position(10, 680)
 
   let resetButton
   resetButton = createButton('reset')
@@ -21,26 +17,19 @@ function setup() {
   resetButton.mouseClicked(resetCanvas)
 }
 
-function draw() {
+function draw () {
   if (mouseIsPressed) {
-    strokeWeight(penStroke)
-    stroke(pen_color)
+    strokeWeight(strokeSlider.value())
+    stroke(colorButton.color())
     line(mouseX, mouseY, pmouseX, pmouseY)
   }
 }
 
-function changePenColor() {
-  r = random(255)
-  g = random(255)
-  b = random(255)
-  penColor = [r, g, b]
-}
-
-function changePenStroke() {
+function changePenStroke () {
   penStroke = Math.floor(Math.random() * 20) + 1
 }
 
-function resetCanvas() {
+function resetCanvas () {
   clear()
   background('white')
 }
