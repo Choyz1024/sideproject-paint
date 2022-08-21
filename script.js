@@ -1,11 +1,18 @@
+const saveBtn = document.querySelector('#saveBtn')
+
 let colorButton
 let strokeSlider
+let cnv
+
+saveBtn.addEventListener('click', () => {
+  save(cnv, 'myCanvas.jpg')
+})
 
 function setup () {
   const sketchWidth = document.querySelector('#square').offsetWidth
   const sketchHeight = document.querySelector('#square').offsetHeight
-  const renderer = createCanvas(sketchWidth, sketchHeight)
-  renderer.parent('square')
+  cnv = createCanvas(sketchWidth, sketchHeight)
+  cnv.parent('square')
   background('white')
 
   colorButton = createColorPicker('#000000')
@@ -35,3 +42,22 @@ function resetCanvas () {
   clear()
   background('white')
 }
+
+// let photo
+
+// // function preload() {
+// //   photo = loadImage('assets/rockies.jpg');
+// // }
+
+// // function draw() {
+// //   image(photo, 0, 0);
+// // }
+
+// // function keyTyped() {
+// //   if (key === 's') {
+// //     photo.save('photo', 'png');
+// //   }
+// // }
+
+// cnv = createCanvas(300, 300);
+// save(cnv, 'myCanvas.jpg');
